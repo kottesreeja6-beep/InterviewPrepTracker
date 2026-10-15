@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <h1>Edit Application</h1>
+
+    <form method="POST">
+
+        <label>Company Name:</label><br>
+        <input type="text" name="company" value="{{ application[1] }}"><br><br>
+
+        <label>Job Role:</label><br>
+        <input type="text" name="role" value="{{ application[2] }}"><br><br>
+
+        <label>Location:</label><br>
+        <input type="text" name="location" value="{{ application[3] }}"><br><br>
+
+        <label>Date Applied:</label><br>
+        <input type="date" name="date" value="{{ application[4] }}"><br><br>
+        
+<label>Interview Date and Time:</label><br>
+<input type="datetime-local"
+       name="interview_datetime"
+       value="{{ application[6] or '' }}"><br><br>
+
+
+        <label>Status:</label><br>
+        <select name="status">
+            <option {% if application[5] == "Applied" %}selected{% endif %}>Applied</option>
+            <option {% if application[5] == "Interview" %}selected{% endif %}>Interview</option>
+            <option {% if application[5] == "Selected" %}selected{% endif %}>Selected</option>
+            <option {% if application[5] == "Rejected" %}selected{% endif %}>Rejected</option>
+        </select><br><br>
+
+        <button type="submit">Update Application</button>
+
+    </form>
+
+    <br>
+
+    <a href="/applications">← Back to Applications</a>
+
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Applications</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <h1>Job Applications</h1>
+   <a href="/">← Back to Dashboard</a>
+
+    <p>Track the jobs and internships you apply for.</p>
+
+    <h2>Applications</h2>
+
+    <form method="POST">
+
+    <label>Company Name:</label><br>
+    <input type="text" name="company"><br><br>
+
+    <label>Job Role:</label><br>
+    <input type="text" name="role"><br><br>
+
+    <label>Location:</label><br>
+    <input type="text" name="location"><br><br>
+
+    <label>Date Applied:</label><br>
+    <input type="date" name="date"><br><br>
+    
+<label>Interview Date and Time:</label><br>
+<input type="datetime-local" name="interview_datetime"><br><br>
+
+
+    <label>Status:</label><br>
+    <select name="status">
+        <option>Applied</option>
+        <option>Interview</option>
+        <option>Selected</option>
+        <option>Rejected</option>
+    </select><br><br>
+
+    <button type="submit">Add Application</button>
+
+</form>
+
+<h2>Search Applications</h2>
+
+<form method="GET" action="/applications">
+    <input type="text" name="search"
+           placeholder="Search by company name"
+           value="{{ search }}">
+
+    <select name="status">
+        <option value="">All Statuses</option>
+        <option value="Applied" {% if status_filter == "Applied" %}selected{% endif %}>Applied</option>
+        <option value="Interview" {% if status_filter == "Interview" %}selected{% endif %}>Interview</option>
+        <option value="Selected" {% if status_filter == "Selected" %}selected{% endif %}>Selected</option>
+        <option value="Rejected" {% if status_filter == "Rejected" %}selected{% endif %}>Rejected</option>
+    </select>
+
+    <button type="submit">Search / Filter</button>
+    <a href="/applications">Reset</a>
+</form>
+
+<h2>My Applications</h2>
+
+<table border="1">
+
+    <tr>
+        <th>Company</th>
+        <th>Role</th>
+        <th>Location</th>
+        <th>Date</th>
+        <th>Interview Date & Time</th>
+        <th>Status</th>
+        <th>Action</th>
+
+    </tr>
+
+    {% for application in applications %}
+
+    
+<tr>
+    <td>{{ application[1] }}</td>
+    <td>{{ application[2] }}</td>
+    <td>{{ application[3] }}</td>
+    <td>{{ application[4] }}</td>
+    <td>{{ application[6] or "Not scheduled" }}</td>
+    <td>{{ application[5] }}</td>
+    <td>
+        <a href="/edit/{{ application[0] }}">Edit</a>
+        |
+        <a href="/delete/{{ application[0] }}"
+           onclick="return confirm('Are you sure you want to delete this application?')">
+            Delete
+        </a>
+    </td>
+</tr>
+
+
+    {% endfor %}
+
+</table>
+
+</body>
+</html>

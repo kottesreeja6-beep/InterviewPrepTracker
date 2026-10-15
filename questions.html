@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Interview Questions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <h1>Interview Questions</h1>
+
+    <a href="/">← Back to Dashboard</a>
+
+    <p>Practice important questions for your interviews.</p>
+
+    <h2>My Interview Questions</h2>
+    
+    <form method="POST">
+
+    <label>Enter Interview Question:</label><br>
+    <input type="text" name="question" required><br><br>
+
+    <label>Category:</label><br>
+    <select name="category">
+        <option>Python</option>
+        <option>SQL</option>
+        <option>Web Technology</option>
+        <option>HR</option>
+        <option>Core Java</option>
+        <option>Other</option>
+    </select><br><br>
+
+    <label>Your Answer:</label><br>
+    <textarea name="answer" rows="4" cols="40"></textarea><br><br>
+
+    <button type="submit">Add Question</button>
+
+</form>
+<h2>Saved Questions</h2>
+
+<table border="1">
+
+    <tr>
+        <th>Question</th>
+        <th>Category</th>
+        <th>Answer</th>
+        <th>Action</th>
+    </tr>
+
+    {% for question in questions %}
+
+    <tr>
+        <td>{{ question[1] }}</td>
+        <td>{{ question[2] }}</td>
+        <td>{{ question[3] }}</td>
+        <td>
+    <a href="/edit-question/{{ question[0] }}">Edit</a>
+    |
+    <a href="/delete-question/{{ question[0] }}">Delete</a>
+</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+</body>
+
+</html>

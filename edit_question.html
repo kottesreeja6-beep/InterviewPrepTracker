@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Interview Question</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <h1>Edit Interview Question</h1>
+
+    <form method="POST">
+
+        <label>Interview Question:</label><br>
+        <input type="text" name="question" value="{{ question[1] }}" required><br><br>
+
+        <label>Category:</label><br>
+        <select name="category">
+
+            <option {% if question[2] == "Python" %}selected{% endif %}>Python</option>
+            <option {% if question[2] == "SQL" %}selected{% endif %}>SQL</option>
+            <option {% if question[2] == "Web Technology" %}selected{% endif %}>Web Technology</option>
+            <option {% if question[2] == "HR" %}selected{% endif %}>HR</option>
+            <option {% if question[2] == "Core Java" %}selected{% endif %}>Core Java</option>
+            <option {% if question[2] == "Other" %}selected{% endif %}>Other</option>
+
+        </select><br><br>
+
+        <label>Your Answer:</label><br>
+        <textarea name="answer" rows="4" cols="40">{{ question[3] }}</textarea><br><br>
+
+        <button type="submit">Update Question</button>
+
+    </form>
+
+    <br>
+
+    <a href="/questions">← Back to Questions</a>
+
+</body>
+
+</html>
