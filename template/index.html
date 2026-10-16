@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>InterviewPrep Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <h1>InterviewPrep Tracker</h1>
+
+    <p>Prepare. Track. Improve. Get interview ready.</p>
+
+    <h2>Welcome!</h2>
+
+    <p>Track your job applications, interview preparation and skills in one place.</p>
+    <a href="/applications">View Job Applications</a>
+    <div class="dashboard">
+
+    <div class="card">
+        <h3>Applications</h3>
+        <p>{{ application_count }}</p>
+    </div>
+
+    
+<div class="card">
+    <h3>My Skills</h3>
+    <p>Track progress</p>
+    <a href="/skills">Open Skills</a>
+</div>
+
+    <div class="card">
+        <h3>Interviews</h3>
+        <p>{{ interview_count }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Selected</h3>
+        <p>{{ selected_count }}</p>
+    </div>
+    <div class="card">
+    <h3>Questions</h3>
+    <p>{{ question_count}}</p>
+    <a href="/questions">Open Questions</a>
+</div>
+
+</div>
+
+</body>
+</html>
